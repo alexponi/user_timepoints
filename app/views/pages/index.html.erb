@@ -1,2 +1,20 @@
 <h1>Hours worked</h1>
-<p></p>
+<% if user_signed_in? %>
+  <p>Getting Started at <%= current_user.last_sign_in_at%></p>
+
+  <% if current_user.start_at == nil %>
+    <%= form_for current_user, :url => "user_signed_in" do |f| %>
+
+    <div><%= f.label :start_at %>
+         <%= f.text_field :start_at, value: Time.now  %></div>
+
+    <div><%= f.submit "Start" %></div>
+    <% end %>  
+  <% end %>
+
+<% end %>
+
+
+
+
+
