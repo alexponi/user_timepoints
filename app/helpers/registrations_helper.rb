@@ -1,4 +1,4 @@
-module PagesHelper
+module RegistrationsHelper
   def resource_name
     :user
   end
