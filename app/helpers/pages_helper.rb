@@ -11,6 +11,7 @@ module PagesHelper
     @devise_mapping ||= Devise.mappings[:user]
   end
 
+   	 
 
 end
 

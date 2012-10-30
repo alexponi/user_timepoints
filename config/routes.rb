@@ -10,6 +10,7 @@ HoursWorked::Application.routes.draw do
   resources :users
   get "pages/index"
   get "pages/stop"
+  get "pages/report"
   root to: 'pages#index'
 #  get 'ajax/time', :to => 'ajax_controller#time', :as => :ajax_time
   get '/pages/time', :to => 'pages#time'

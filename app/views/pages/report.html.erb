@@ -1,0 +1,41 @@
+<h1>Hours worked</h1>
+
+<%= javascript_tag do -%>
+$(document).ready(
+  function(){
+    setInterval(function(){
+      $.ajax({
+        url: "<%= 'time' %>",
+        type: "GET",
+        dataType: "script"
+    });
+  }, 1000 );
+});
+<% end -%>
+
+
+
+<div id ='time_div'>The current time is 
+</div><br>
+    <% xhours = Time.new %>
+    <% growing_hours = Time.new %>
+    <% if current_user.updated_at != nil %> 
+      <% if current_user.start_at != nil %>
+        <% xhours = current_user.updated_at.to_i - current_user.start_at.to_i %>
+      <% end %>  
+    <% end %>
+    <% if current_user.hours_worked != nil %>
+    <% growing_hours = current_user.hours_worked + xhours %>
+    <% end %>
+    <p>Last session end at: <%= current_user.updated_at %></p>
+    <p>Last session time worked: <%= xhours / 3600 %> hours <%= (xhours / 60).round - ((xhours / 3600).round * 60 ) %>  min</p>
+    <p>Hours_worked <%= growing_hours / 3600 %> hours <%= ( growing_hours / 60).round - ((growing_hours / 3600).round * 60 ) %></p>
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+    <%= devise_error_messages! %>    
+    <%= f.hidden_field :email, :value => current_user.email %>
+    <%= f.hidden_field :password %></div>
+    <%= f.hidden_field :start_at, :value => nil %>
+    <%= f.hidden_field :end_at, :value => nil %>
+    <%= f.hidden_field :hours_worked, :value => growing_hours %>
+    <div><%= f.submit "OK" %></div>
+    <% end %>

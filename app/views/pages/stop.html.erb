@@ -17,15 +17,14 @@ $(document).ready(
 <div id ='time_div'>The current time is 
 </div><br>
 
-<!--     <%= xhours = Time.now.to_time - current_user.start_at.to_time %>
-    <p>Getting Started at <%= current_user.start_at %></p> -->
+     
+    <p>Getting Started at <%= current_user.updated_at %></p>
     <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
     <%= devise_error_messages! %>    
     <%= f.hidden_field :email, :value => current_user.email %>
-    <%= f.hidden_field :password %></div>
-    <%= f.hidden_field :end_at, :value => Time.now %>
-    <%= f.hidden_field :hours_worked, :value => xhours %>
-    <%= f.hidden_field :start_at, :value => nil %>
+    <%= f.hidden_field :password %>
+    <%= f.hidden_field :start_at, :value => current_user.updated_at  %>
+    <%= f.hidden_field :end_at, :value => Time.now  %>
     <div><%= f.submit "Stop work" %></div> 
     <% end %>
 

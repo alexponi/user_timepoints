@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(:version => 20121028202033) do
     t.datetime "updated_at"
     t.datetime "start_at"
     t.datetime "end_at"
-    t.time     "hours_worked"
   end
 
 end
