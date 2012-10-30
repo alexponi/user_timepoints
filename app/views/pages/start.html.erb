@@ -19,10 +19,11 @@ $(document).ready(
 </div><br>
 
     <% if current_user.updated_at != nil %>
-   	<p>Last session end_at <%= current_user.updated_at %></p>
-   	<% end %>
+   	<p>Last session end at: <%= current_user.updated_at %></p>
+   	<% end %><br>
    	<% if current_user.hours_worked != nil %>
-      <p>Hours_worked <%= current_user.hours_worked %></p>
+    <% a = current_user.hours_worked %> 
+      <p>Hours_worked <%= a / 3600 %> hours <%= (a / 60).round - ((a / 3600).round * 60 ) %> minutes</p>
     <% end %>
     <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
     <%= devise_error_messages! %>    

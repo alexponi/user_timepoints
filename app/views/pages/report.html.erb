@@ -17,19 +17,24 @@ $(document).ready(
 
 <div id ='time_div'>The current time is 
 </div><br>
-    <% xhours = Time.new %>
-    <% growing_hours = Time.new %>
+    
+    
     <% if current_user.updated_at != nil %> 
       <% if current_user.start_at != nil %>
         <% xhours = current_user.updated_at.to_i - current_user.start_at.to_i %>
       <% end %>  
     <% end %>
-    <% if current_user.hours_worked != nil %>
-    <% growing_hours = current_user.hours_worked + xhours %>
+    <% if current_user.hours_worked == nil %>
+    <% current_user.hours_worked = 0 %>
     <% end %>
+    <% growing_hours = current_user.hours_worked + xhours %>
+    
     <p>Last session end at: <%= current_user.updated_at %></p>
-    <p>Last session time worked: <%= xhours / 3600 %> hours <%= (xhours / 60).round - ((xhours / 3600).round * 60 ) %>  min</p>
-    <p>Hours_worked <%= growing_hours / 3600 %> hours <%= ( growing_hours / 60).round - ((growing_hours / 3600).round * 60 ) %></p>
+    <% a = xhours %> 
+      <p>Last session time worked: <%= a / 3600 %> hours <%= (a / 60).round - ((a / 3600).round * 60 ) %> minutes</p>
+    <% b = growing_hours %> 
+      <p>Hours_worked : <%= b / 3600 %> hours <%= (b / 60).round - ((b / 3600).round * 60 ) %> minutes</p>
+
     <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
     <%= devise_error_messages! %>    
     <%= f.hidden_field :email, :value => current_user.email %>
