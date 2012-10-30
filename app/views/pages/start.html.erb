@@ -1,0 +1,31 @@
+<h1>Hours worked</h1>
+
+<%= javascript_tag do -%>
+$(document).ready(
+  function(){
+    setInterval(function(){
+      $.ajax({
+        url: "<%= 'time' %>",
+        type: "GET",
+        dataType: "script"
+    });
+  }, 1000 );
+});
+<% end -%>
+
+
+
+<div id ='time_div'>The current time is 
+</div><br>
+
+
+<!--   	<p>Last session end_at <%= current_user.end_at %></p>
+  	<p>Last session hours_worked <%= current_user.hours_worked %></p> -->
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+    <%= devise_error_messages! %>    
+    <%= f.hidden_field :email, :value => current_user.email %>
+    <%= f.hidden_field :password %></div>
+    <%= f.hidden_field :start_at, :value => Time.now %>
+    <%= f.hidden_field :end_at, :value => nil %>
+    <div><%= f.submit "Start work" %></div>
+    <% end %>

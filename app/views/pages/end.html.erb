@@ -1,0 +1,11 @@
+<%= xhours = Time.now.to_time - current_user.start_at.to_time %>
+    <p>Getting Started at <%= current_user.start_at %></p>
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+    <%= devise_error_messages! %>    
+    <%= f.hidden_field :email, :value => current_user.email %>
+    <%= f.hidden_field :password %></div>
+    <%= f.hidden_field :end_at, :value => @time %>
+    <%= f.hidden_field :hours_worked, :value => xhours %>
+    <%= f.hidden_field :start_at, :value => nil %>
+    <div><%= f.submit "End" %></div> 
+    <% end %>

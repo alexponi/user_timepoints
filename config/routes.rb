@@ -1,9 +1,19 @@
 HoursWorked::Application.routes.draw do
   
+  get "pages/start"
+
+  get "ajax/show"
+
+  get "ajax/time"
+
   devise_for :users, :controllers => { :registrations => "registrations" }
   resources :users
   get "pages/index"
+  get "pages/stop"
   root to: 'pages#index'
+#  get 'ajax/time', :to => 'ajax_controller#time', :as => :ajax_time
+  get '/pages/time', :to => 'pages#time'
+  get '/time', :to => 'pages#time'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
