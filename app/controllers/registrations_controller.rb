@@ -56,6 +56,18 @@ class RegistrationsController < Devise::RegistrationsController
 
   # DELETE /resource
   def destroy
+
+    if current_user.updated_at != nil
+      if current_user.start_at != nil
+        if current_user.end_at == nil
+          current_user.update_attribute(:start_at, current_user.updated_at)
+        end
+      end
+    end  
+
+
+
+
     resource.destroy
     Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
     set_flash_message :notice, :destroyed if is_navigational_format?

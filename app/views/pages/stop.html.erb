@@ -18,12 +18,11 @@ $(document).ready(
 </div><br>
 
      
-    <p>Getting Started at <%= current_user.updated_at %></p>
+    <p>Getting Started at <%= current_user.start_at %></p>
     <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
     <%= devise_error_messages! %>    
     <%= f.hidden_field :email, :value => current_user.email %>
     <%= f.hidden_field :password %>
-    <%= f.hidden_field :start_at, :value => current_user.updated_at  %>
     <%= f.hidden_field :end_at, :value => Time.now  %>
     <div><%= f.submit "Stop work" %></div> 
     <% end %>
