@@ -1,31 +1,10 @@
-<h1>Hours worked</h1>
-
-<%= javascript_tag do -%>
-$(document).ready(
-  function(){
-    setInterval(function(){
-      $.ajax({
-        url: "<%= 'time' %>",
-        type: "GET",
-        dataType: "script"
-    });
-  }, 1000 );
-});
-<% end -%>
-
-
-
-<div id ='time_div'>The current time is 
-</div><br>
-    
-    
     <% if current_user.updated_at != nil %> 
       <% if current_user.start_at != nil %>
         <% xhours = current_user.updated_at.to_i - current_user.start_at.to_i %>
       <% end %>  
     <% end %>
     <% if current_user.hours_worked == nil %>
-    <% current_user.hours_worked = 0 %>
+      <% current_user.hours_worked = 0 %>
     <% end %>
     <% growing_hours = current_user.hours_worked + xhours %>
     

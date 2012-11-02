@@ -1,0 +1,17 @@
+<%= javascript_tag do -%>
+$(document).ready(
+  function(){
+    setInterval(function(){
+      $.ajax({
+        url: "<%= 'time' %>",
+        type: "GET",
+        dataType: "script"
+    });
+  }, 1000 );
+});
+<% end -%>
+
+
+
+<div id ='time_div'>The current time is <%= Time.zone.now %>
+</div><br>
