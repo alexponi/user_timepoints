@@ -14,7 +14,7 @@ $(document).ready(
 <% end -%>
 
 
-<div id ='time_div'>The current time is 
+<div id ='time_div'>The Moscow time is 
 </div><br>
 
      
@@ -23,7 +23,7 @@ $(document).ready(
     <%= devise_error_messages! %>    
     <%= f.hidden_field :email, :value => current_user.email %>
     <%= f.hidden_field :password %>
-    <%= f.hidden_field :end_at, :value => Time.now  %>
+    <%= f.hidden_field :end_at, :value => Time.zone.now  %>
     <div><%= f.submit "Stop work" %></div> 
     <% end %>
 
